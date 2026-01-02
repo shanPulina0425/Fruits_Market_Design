@@ -55,3 +55,9 @@
     -fx-background-color:#BAEAC3            ;
     -fx-background-radius:30;
 }
+
+.fruit-item{
+    -fxbackground-color:#FFFFFF;
+    -fx-fxbackground-radius:30;
+
+}
