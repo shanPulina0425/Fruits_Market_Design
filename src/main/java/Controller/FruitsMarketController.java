@@ -3,18 +3,22 @@ package Controller;
 import Model.Fruit;
 import javafx.application.Application;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 
 public class FruitsMarketController implements Initializable {
@@ -43,39 +47,63 @@ public class FruitsMarketController implements Initializable {
     @FXML
     private Button searchButton;
 
+
+
+    private ArrayList<String> nameArray=new ArrayList<>(Arrays.asList("Kiwi","Coconut","Peach","Grapes","Watermelon","Orange","StrawBerry","Mango","Cherry","Banana"));
+    private ArrayList<Double> priceArray=new ArrayList<Double>(Arrays.asList(2.99,3.99,1.50,0.99,4.99,2.99,0.99,0.99,0.99,1.99));
+    private ArrayList<String> imagePath=new ArrayList<>(Arrays.asList("/img/kiwi.png","/img/coconut.png","/img/peach.png","/img/grapes.png","/img/watermelon.png","/img/orange.png","/img/strawberry.png","/img/mango.png","/img/cherry.png","/img/banana.png"));
+    private ArrayList<String> color=new ArrayList<>(Arrays.asList("6A7324","A7745B","F16C31","291D36","22371D","FB5D03","80080C","FFB605","5F060E","E7C00F"));
+
+
+
     private ArrayList<Fruit> fruits =new ArrayList<>();
 
 
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        getData();
 
+        for(int i=0;i<fruits.size();i++){
 
-    private ArrayList<Fruit> getData(){
+            FXMLLoader fxmlLoader=new FXMLLoader(getClass().getResource("/View/items.fxml"));
+            try {
+                AnchorPane root= fxmlLoader.load();
+                ItemController itemController=fxmlLoader.getController();
+                itemController.setData(fruits.get(i));
 
-
-
-        for(int i=0;i<20;i++){
-            Fruit fruit=new Fruit();
-
-            fruit.setName("Kiwi");
-            fruit.setPrice(2.99);
-            fruit.setImgsrc("/img/kiwi.png");
-            fruit.setColor("6A7324");
-
-            fruits.add(fruit);
-
+            } catch (IOException e) {
+                e.printStackTrace();
+                //throw new RuntimeException(e);
+            }
 
 
 
         }
+
+
+    }
+
+
+    private ArrayList<Fruit> getData(){
+
+        for(int i=0;i<10;i++){
+
+            Fruit fruit =new Fruit();
+            fruit.setName(nameArray.get(i));
+            fruit.setPrice(priceArray.get(i));
+            fruit.setImgsrc(imagePath.get(i));
+            fruit.setColor(color.get(i));
+            fruits.add(fruit);
+
+
+        }
+
         return fruits;
 
 
     }
 
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
 
-
-    }
 }
