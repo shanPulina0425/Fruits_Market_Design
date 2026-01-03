@@ -229,7 +229,7 @@
                      <children>
                         <ScrollPane fx:id="scroll" styleClass="transparent-text" stylesheets="@../Styles/style.css">
                            <content>
-                              <GridPane fx:id="grid">
+                              <GridPane fx:id="grid" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
                                  <rowConstraints>
                                     <RowConstraints />
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" />

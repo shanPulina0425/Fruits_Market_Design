@@ -57,7 +57,7 @@
 }
 
 .fruit-item{
-    -fxbackground-color:#FFFFFF;
-    -fx-fxbackground-radius:30;
-
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 30;
+    -fx-effect: dropshadow(GAUSSIAN, rgba(0, 0, 0, 0.25), 10, 0, 0, 2);
 }

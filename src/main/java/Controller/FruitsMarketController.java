@@ -11,10 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -64,20 +61,20 @@ public class FruitsMarketController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         int column =0;
         int row=0;
 
         getData();
 
         grid.getChildren().clear();
+        grid.getColumnConstraints().clear();
+        grid.getRowConstraints().clear();
 
-        grid.setMinWidth(Region.USE_COMPUTED_SIZE);
-        grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
-        //grid.setMaxWidth(Region.USE_PREF_SIZE);
 
-        grid.setMinHeight(Region.USE_COMPUTED_SIZE);
-        grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
-        grid.setMaxHeight(Region.USE_PREF_SIZE);
+
+        grid.setHgap(10);
+        grid.setVgap(5);
 
 
         for(int i=0;i<fruits.size();i++){
@@ -95,15 +92,26 @@ public class FruitsMarketController implements Initializable {
 
                 }
 
+                if(grid.getColumnConstraints().size()<=column){
+                    ColumnConstraints columnConstraints=new ColumnConstraints();
+                    columnConstraints.setMinWidth(240);
+                    columnConstraints.setPrefWidth(240);
+                    columnConstraints.setMaxWidth(240);
+                    grid.getColumnConstraints().add(columnConstraints);
+
+
+                }
+
+                if(grid.getRowConstraints().size() <= row) {
+                    RowConstraints rowConstraints = new RowConstraints();
+                    rowConstraints.setMinHeight(230);
+                    rowConstraints.setPrefHeight(230);
+                    grid.getRowConstraints().add(rowConstraints);
+                }
+
                 grid.add(anchorPane,column++,row);
 
-
-
-
                 GridPane.setMargin(anchorPane,new Insets(10));
-
-
-
 
 
             } catch (IOException e) {
@@ -114,6 +122,14 @@ public class FruitsMarketController implements Initializable {
 
 
         }
+
+        grid.setMinWidth(Region.USE_COMPUTED_SIZE);
+        grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
+        grid.setMaxWidth(Region.USE_PREF_SIZE);
+
+        grid.setMinHeight(Region.USE_COMPUTED_SIZE);
+        grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
+        grid.setMaxHeight(Region.USE_PREF_SIZE);
 
 
     }
