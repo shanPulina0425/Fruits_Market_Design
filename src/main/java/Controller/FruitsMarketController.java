@@ -5,6 +5,7 @@ import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -12,6 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -62,15 +64,47 @@ public class FruitsMarketController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        int column =0;
+        int row=0;
+
         getData();
+
+        grid.getChildren().clear();
+
+        grid.setMinWidth(Region.USE_COMPUTED_SIZE);
+        grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
+        //grid.setMaxWidth(Region.USE_PREF_SIZE);
+
+        grid.setMinHeight(Region.USE_COMPUTED_SIZE);
+        grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
+        grid.setMaxHeight(Region.USE_PREF_SIZE);
+
 
         for(int i=0;i<fruits.size();i++){
 
             FXMLLoader fxmlLoader=new FXMLLoader(getClass().getResource("/View/items.fxml"));
             try {
-                AnchorPane root= fxmlLoader.load();
+                AnchorPane anchorPane= fxmlLoader.load();
+
                 ItemController itemController=fxmlLoader.getController();
                 itemController.setData(fruits.get(i));
+
+                if(column==3){
+                    column=0;
+                    row++;
+
+                }
+
+                grid.add(anchorPane,column++,row);
+
+
+
+
+                GridPane.setMargin(anchorPane,new Insets(10));
+
+
+
+
 
             } catch (IOException e) {
                 e.printStackTrace();
