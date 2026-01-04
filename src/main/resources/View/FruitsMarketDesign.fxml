@@ -68,14 +68,14 @@
                         <Insets bottom="20.0" left="50.0" right="50.0" />
                      </VBox.margin>
                      <children>
-                        <HBox prefHeight="52.0" prefWidth="335.0">
+                        <HBox prefHeight="44.0" prefWidth="324.0">
                            <children>
-                              <Label fx:id="fruitNameLabel" prefHeight="44.0" prefWidth="158.0" text="Peach" textFill="WHITE">
+                              <Label fx:id="fruitNameLabel" prefHeight="44.0" prefWidth="183.0" text="Peach" textFill="WHITE">
                                  <font>
-                                    <Font name="Cambria" size="36.0" />
+                                    <Font name="Cambria" size="24.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="fruitPriceLabel" alignment="CENTER_RIGHT" layoutX="10.0" layoutY="10.0" prefHeight="44.0" prefWidth="138.0" text="\$2.99" textFill="WHITE">
+                              <Label fx:id="fruitPriceLabel" alignment="CENTER_RIGHT" layoutX="10.0" layoutY="10.0" prefHeight="44.0" prefWidth="124.0" text="\$2.99" textFill="WHITE" HBox.hgrow="ALWAYS">
                                  <font>
                                     <Font name="Cambria" size="36.0" />
                                  </font>

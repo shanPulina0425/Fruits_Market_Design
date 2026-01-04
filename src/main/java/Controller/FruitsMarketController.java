@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
@@ -18,7 +19,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Currency;
 import java.util.ResourceBundle;
+
+import static Controller.ItemController.CURRENCY;
 
 public class FruitsMarketController implements Initializable {
 
@@ -76,6 +80,10 @@ public class FruitsMarketController implements Initializable {
         grid.setHgap(10);
         grid.setVgap(5);
 
+        choosenFruitCard.setVisible(false);
+
+
+
 
         for(int i=0;i<fruits.size();i++){
 
@@ -85,6 +93,8 @@ public class FruitsMarketController implements Initializable {
 
                 ItemController itemController=fxmlLoader.getController();
                 itemController.setData(fruits.get(i));
+                itemController.setMarketController(this);
+
 
                 if(column==3){
                     column=0;
@@ -131,6 +141,17 @@ public class FruitsMarketController implements Initializable {
         grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
         grid.setMaxHeight(Region.USE_PREF_SIZE);
 
+
+    }
+
+    public void setChoosenFruit(Fruit fruit){
+
+        choosenFruitCard.setVisible(true);
+        fruitNameLabel.setText(fruit.getName());
+        fruitPriceLabel.setText(CURRENCY+fruit.getPrice());
+        Image image=new Image(fruit.getImgsrc());
+        fruitImage.setImage(image);
+        choosenFruitCard.setStyle("-fx-background-color: #"+fruit.getColor()+";\n"+"-fx-background-radius: 30;");
 
     }
 
